@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const indexRouter = Router();
+const router = Router();
 
 const posts = [
   { text: 'Hello there', user: 'Snuk', added: new Date() },
@@ -10,8 +10,16 @@ const posts = [
   },
 ];
 
-indexRouter.get('/', (req, res) => {
+router.get('/new', (req, res) => {
+  res.render('form');
+});
+
+router.post('/new', (req, res) => {
+  res.send(req.body);
+});
+
+router.get('/', (req, res) => {
   res.render('index', { posts });
 });
 
-module.exports = indexRouter;
+module.exports = router;
