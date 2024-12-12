@@ -15,7 +15,12 @@ router.get('/new', (req, res) => {
 });
 
 router.post('/new', (req, res) => {
-  res.send(req.body);
+  posts.push({
+    text: req.body.postText,
+    user: req.body.username,
+    added: new Date(),
+  });
+  res.redirect('/');
 });
 
 router.get('/', (req, res) => {
