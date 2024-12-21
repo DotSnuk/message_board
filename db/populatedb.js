@@ -16,8 +16,11 @@ INSERT INTO messages (message, username) VALUES
 async function main() {
   console.log('seeding...');
   const passwd = process.env.DB_PASSWORD;
+  const connectionString = argv[2]
+    ? argv[2]
+    : `postgresql://snuken:${passwd}>@localhost:5432/message_board`;
   const client = new Client({
-    connectionString: `postgresql://snuken:${passwd}>@localhost:5432/message_board`,
+    connectionString: connectionString,
   });
   await client.connect();
   await client.query(SQL);
